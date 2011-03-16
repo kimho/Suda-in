@@ -1,0 +1,44 @@
+<% if params[:person] %>
+	<div id="search_result">
+		<h1 id="heading">
+			<% if @people.count > 0 %>
+				User search results for <b><%=params[:person]%></b>
+			<% else %>
+				No User search results for <b><%=params[:person]%></b>
+			<% end %>
+			<span class="name-search-link"><%= link_to "Search for real-time »", search_path(:q=>params[:person]) %></li>
+		</h1>
+	</div>
+<% end %>
+
+<ul id="sudas_list">
+ 	<% if people.count > 0 %>
+		<% people.each do |person| %>
+			<li class="sudas_li <% if people.first == person %> first<% end %>" id="<%= person.username%>">
+				<!-- <%= image_tag person.gravatar_url %> -->
+				<%= image_tag "/emblems/#{person.picture}", :onerror => "this.src='#{person.gravatar_url}'", :width => 50, :height => 50, :title => person.nickname %>
+				<div class="suda_message_container">
+					<span class="label screenname">
+						<%= link_to person.username, user_sudas_path(person.username) %>
+					</span>
+					<br/>
+					<span class="label nickname"> 
+						<%= person.nickname%>
+					</span>
+					<div class="people_suda">
+						<%= h person.sudas.last.message if person.sudas.last %>
+					</div>
+					<div class="post_ago">
+						<%= "#{distance_of_time_in_words_to_now(person.sudas.last.created_at)} ago" if person.sudas.last %>
+						<%= person.sudas.last.agent ? "via #{person.sudas.last.agent}" : '' if person.sudas.last %>
+					</div>
+				</div>
+				<div class="button_container">
+					<input type="button" class="button" name="<%= person.username%>" id="btn_follow_<%=person.id%>" value="<% if current_user.is_friend? person %>You are Following!<% else %>Follow<% end %>" onclick="toggle_follow_ajax('<%= person.username%>')" />
+				</div>
+				<div class="clear"></div>
+			</li>
+		<% end %>
+	<% end %>
+</ul>
+

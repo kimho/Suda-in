@@ -1,0 +1,50 @@
+<div id="settings_container">
+	<h2><%= link_to image_tag("/emblems/#{current_user.picture}", :width=>25, :height=>25, :border=>0, :align=>"top", :onerror => "this.src='#{current_user.gravatar_url}'"), user_sudas_path(current_user.username) %> <%=current_user.username%>'s settings</h2>
+	
+	<% form_tag (update_settings_path, :id => :settings_form, :multipart => true) do |u| %>
+		<fieldset class="common-form standard-form">
+			<table class="input-form" cellspacing="0">
+				<tbody>
+					<tr>
+						<th>
+							<label for="profile_image_uploaded_data">Picture</label>
+						</th>
+						<td class="avatar-settings avatar-exists">
+							<%= image_tag "/emblems/#{current_user.picture}", :align => "top", :class=>"profile-image", :width => 73, :height => 73, :onerror => "this.src='#{current_user.gravatar_url(:size=>73)}'", :title => current_user.nickname %>
+							<span class="avatar-upload">
+								<%= file_field :user, :profile_image_uploaded_data, :size => 15 %>
+								<p><small>Maximum size of 5k. JPG, GIF, PNG.</small>
+							</span>
+							<span class="avatar-options">
+								<!--<%= link_to "Change Image", :class => "change-image" %>-->
+								<%= link_to "Delete uploaded Image and Use Gravatar", update_settings_path(:del_emblem=>"y") %>
+							</span>
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+		<fieldset class="common-form standard-form">
+			<table class="input-form" cellspacing="0">
+				<tbody>
+					<!-- <tr>
+											<th>
+												<label for="nick_name">Name</label>
+											</th>
+											<td>
+												<%= text_field :user, :nickname %>
+												<p><small>Enter your real name, so people you know can recognize you.</small>
+											</td>
+										</tr> -->
+					<tr>
+						<th></th>
+						<td>
+							<%= submit_tag "Save", :id=>"save_settings_button", :class => "button" %>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	<% end %>
+</div>

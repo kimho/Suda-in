@@ -1,0 +1,30 @@
+<!-- <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss/<%=@user.username%>" /> -->
+
+<h1>
+<%= image_tag "/emblems/#{@user.picture}", :onerror => "this.src='#{@user.gravatar_url(:size=>73)}'", :title => @user.nickname, :width=>73, :height=>73 %>
+<%= @user.username %>
+</h1>
+
+<div class="profile-controls round">
+	<% if current_user.username == @user.username %>
+		<strong>That's you!</strong>
+	<% else %>
+		<%- form_tag toggle_follow_path do -%>
+			<% if current_user.is_friend? @user %>
+				<%= submit_tag "You are Following!", :class => "button" %>
+			<% else %>
+				<%= submit_tag "Follow", :class => "button" %>
+			<% end %>
+		<%- end -%>
+	<% end %>
+</div>
+
+&nbsp;
+
+
+<%= render :partial => "/includes/sudas_list", :locals => { :sudas => @sudas }%>
+
+<div id="pagination">
+		<%= link_to_function "More", "more_show_suda('#{@user.username}')", :class => 'more' %>
+</div>
+

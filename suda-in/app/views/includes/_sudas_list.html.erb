@@ -1,0 +1,50 @@
+<ul id="sudas_list">
+	<% @sudas.each do |suda| %>
+		<li id="sudas_id_<%= suda.id %>" class="sudas_li<% if sudas.first == suda %> first<% end %>">
+			<%= image_tag "/emblems/#{suda.user.picture}", :onerror => "this.src='#{suda.user.gravatar_url}'", :width => 50, :height => 50, :title => suda.user.nickname %>
+			<div class="suda_message_container">
+				<div class="suda_message">
+					<span id="suda_user_id_<%= suda.id %>"><%= link_to suda.user.username, user_sudas_path(suda.user.username) %></span>
+					<span id="suda_message_id_<%= suda.id %>"><%= auto_link_urls(link_user(link_url((h suda.message))),{:sanitize=>true},{}) %></span>
+				</div>
+				<div class="time_ago">
+					<%= distance_of_time_in_words_to_now(suda.created_at) %> ago
+					<%= suda.agent ? "via #{suda.agent}" : '' %>
+				</div>
+				<ul id="opt_ul_id_<%= suda.id %>" class="actions-hover <% if current_user.username == suda.user.username %>del_ul<% else %>re_ul<% end %>">
+					<% if current_user.username == suda.user.username %>
+						<li>
+							<span class="del">
+								<span class="delete-icon icon"></span>
+								<%= link_to_function "Delete", "if (confirm('Sure you want to delete this suda? There is No undo!')) delsuda('"+suda.id.to_s+"');" %>
+							</span>
+						</li>
+					<% else %>
+						<li>
+							<span class="reply">
+								<span class="reply-icon icon"></span>
+								<% if controller.action_name == 'show' %>
+									<%= link_to "Reply", root_path(:in_reply_to => suda.user.username) %>
+								<% else %>
+									<%= link_to_function "Reply", "reply('"+suda.user.username+"');" %>
+								<% end %>
+							</span>
+						</li>
+						<li>
+							<span class="resuda-link">
+								<span class="resuda-icon icon"></span>
+								<% if controller.action_name == 'show' %>
+									<%= link_to "Resuda", root_path(:in_resuda_of => suda.id) %>
+								<% else %>
+									<%= link_to_function "Resuda", "resuda('"+suda.id.to_s+"');" %>
+								<% end %>
+							</span>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</li>
+	<% end %>
+</ul>
+

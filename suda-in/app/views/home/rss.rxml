@@ -1,0 +1,18 @@
+xml.instruct!
+
+xml.rss "version" => "2.0" do
+  xml.channel do
+    xml.title       "#{APP_CONFIG['site_title']} Suda-in / #{current_user.username} and friends"
+    xml.link        url_for :only_path => false, :controller => 'home'
+    xml.description "#{APP_CONFIG['site_title']}  #{current_user.username} and friends sudas in Suda-in"
+
+    @sudas.each do |suda|
+      xml.item do
+        xml.title       truncate(suda.message, :length => 30)
+        xml.link        url_for :only_path => false, :controller => 'home', :action => 'show', :username => User.find_by_id(suda.user_id).username
+        xml.description suda.message
+        xml.guid        url_for :only_path => false, :controller => 'home', :action => 'show', :username => User.find_by_id(suda.user_id).username
+      end
+    end
+  end
+end

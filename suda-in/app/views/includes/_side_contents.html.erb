@@ -1,0 +1,44 @@
+<div id="my_info_container">
+	<%= link_to image_tag("/emblems/#{current_user.picture}", :onerror => "this.src='#{current_user.gravatar_url(:size=>30)}'", :border=>0, :width=>30, :height=>30, :title => current_user.nickname), user_sudas_path(current_user.username) %>
+	<div class="contents">
+		<%= link_to current_user.username, user_sudas_path(current_user.username) %><br/>
+		<span class="small"><%= pluralize(current_user.sudas.length, "Suda") %></span>
+	</div>
+</div>
+<div class="clear"></div>
+<div id="side_content_container">
+	<h4><%= link_to "#{current_user.friends.count} following", following_path  %></h4>
+	<h4><%= link_to pluralize(current_user.friends_of.count, "follower"), followers_path %></h4>
+</div>
+<% form_tag (search_path, :method => :get) do %>
+<div id="search_bar">
+	<%= text_field_tag :q, @q, :class => "text"%>
+	<!-- <div id="search_submit_button">&nbsp</div> -->
+	<%= image_submit_tag("nav_search_submit.png", :id => 'search_submit_button') %>
+	<!-- <%= submit_tag "search" %> -->
+</div>
+<% end %>
+<div id="show_all">
+	<h4><%= link_to "Show people in suda", people_path  %></h4>
+</div>
+<% if current_user.friends_of.count > 0 %>
+	<div>
+		<h4>Following</h4>
+		<% current_user.friends.each do |friend| %>
+			<%= link_to image_tag("/emblems/#{friend.picture}", :width=>25, :height=>25, :onerror => "this.src='#{friend.gravatar_url(:size=>25)}'", :border => 0, :alt => friend.username, :title => friend.nickname), user_sudas_path(friend.username) %>
+		<% end %>
+	</div>
+	<br />
+<% end %>
+<div id="rssfeed">
+	<% if controller.action_name == 'search' %>
+		<%= link_to "RSS Feed of search result for '#{@q}'", search_rss_path(@q), :class=>'rss' %>
+	<% elsif controller.action_name == 'all' %>
+		<%= link_to "RSS Feed of all sudas", all_rss_path, :class=>'rss' %>
+	<% elsif controller.action_name == 'show' %>
+		<%= link_to "RSS Feed of #{current_user.username}", user_rss_path(@user.username), :class=>'rss' %>
+	<% elsif controller.action_name == 'index' %>
+		<%= link_to "RSS Feed", rss_path, :class=>'rss' %>
+	<% end %>
+</div>
+

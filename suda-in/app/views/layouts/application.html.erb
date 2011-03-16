@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "#{APP_CONFIG['site_title']} Suda-in" %></title>
+    <%= stylesheet_link_tag "application" %>
+	<%= javascript_include_tag "jquery.js","jquery-ui.js","jrails.js","fix.js","application.js" %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+	<meta name="viewport" content="width=device-width; initial-scale=0.56; maximum-scale=1.0; user-scalable=1;" />
+	<script type="application/x-javascript">
+		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){
+			window.scrollTo(0,1);
+		}
+	</script>
+  </head>
+  <body>
+	<div id="header">
+		<div id="logo">
+			<%= link_to image_tag("logo.png", :alt => "#{APP_CONFIG['site_title']} Suda-in"), root_url %>
+		</div>
+		<div id="top_links_container">
+			<% if current_user %>
+				<%= link_to "Settings", settings_path %> |
+				<% unless APP_CONFIG['use_ldap'] %>
+					<%= link_to "Edit", edit_path %> |
+				<% end %>
+				<%= link_to "Logout", logout_path %>
+			<% else %>
+				<%= link_to "Login", login_path %>
+			<% end %>
+		</div>
+	</div>
+	<div class="clear"></div>
+    <div id="container">
+		<table class="columns" cellspacing="0">
+			<tbody>
+				<tr>
+					<td id="content_base" class="round-left column">
+						<div id="main">
+							<% flash.each do |name, msg| %>
+								<%= content_tag :div, msg, :id => "flash_#{name}" %>
+								<% end %>
+							<%= content_tag :h1, yield(:title) if show_title? %>
+							<%= yield %>
+						</div>
+					</td>
+					<% if current_user && controller_name != "settings" %>
+						<td id="side_base" class="round-right column">
+							<div id="side">
+								<%= render :partial => "/includes/side_contents" %>
+							</div>
+						</td>
+					<% else %>
+						<td id="side_base" class="round-right column">
+							<div id="side">
+								<%= render :partial => "/includes/side_settings" %>
+							</div>
+						</td>
+					<% end %>
+				</tr>
+			</tbody>
+		</table>
+		<div id="footer" class="round">
+			<h3 class="offscreen">Footer</h3>
+			<ul class="footer-nav">
+				<li class="first">© 2010 Sudain</li>
+			</ul>
+		</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+# Please restart rails after changing some values.
+development : 
+    site_title: kimho's
+    http_host: localhost
+    twitter_key: your_key
+    twitter_secret: your_secret
+
+    use_ldap: true
+    ldap_domain: example.com
+    ldap_host: exampledc.example.com
+    ldap_base: dn=exampledc.example.com/dc=example,dc=com
+    ldap_username: your_search_ldap_username
+    ldap_password: your_search_ldap_password
+    
+    use_mail: false
+    smtp_address: smtp.localhost
+    administrator_mail: administrator@localhost
+    
+test :
+    site_title: kimho's
+    http_host: localhost
+    twitter_key: your_key
+    twitter_secret: your_secret
+
+    use_ldap: true
+    ldap_domain: example.com
+    ldap_host: exampledc.example.com
+    ldap_base: dn=exampledc.example.com/dc=example,dc=com
+    ldap_username: your_search_ldap_username
+    ldap_password: your_search_ldap_password
+    
+    use_mail: false
+    smtp_address: smtp.localhost
+    administrator_mail: administrator@localhost
+    
+production :
+    site_title: kimho's
+    http_host: localhost
+    twitter_key: your_key
+    twitter_secret: your_secret
+
+    use_ldap: true
+    ldap_domain: example.com
+    ldap_host: exampledc.example.com
+    ldap_base: dn=exampledc.example.com/dc=example,dc=com
+    ldap_username: your_search_ldap_username
+    ldap_password: your_search_ldap_password
+    
+    use_mail: false
+    smtp_address: smtp.localhost
+    administrator_mail: administrator@localhost

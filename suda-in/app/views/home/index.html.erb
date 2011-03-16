@@ -1,0 +1,60 @@
+<% 
+	if controller.action_name == 'search'
+		href = "/rss/search/#{@q}"
+	elsif controller.action_name == 'all'
+		href = "/rss/all"
+	else
+		href = "/rss"
+	end
+%>
+<!-- <link rel="alternate" type="application/rss+xml" title="RSS" href="<%=href%>" /> -->
+
+<%- form_for Suda.new do |s| -%>
+	<div id="new_suda_form">
+		<h3 id="status_label" style="float:left;">What's happening?</h3>
+		<h3 id="char_count">140</h3>
+		<%= s.text_area :message, :value => @suda_value  %>
+		<% if @suda_value %><script>detect_message();</script><% end %>
+		<% if @last_suda %>
+			<div id="latest_message">
+				<strong>Last: </strong><%= h @last_suda.message %>
+				<span class="post_ago"><%= distance_of_time_in_words_to_now(@last_suda.created_at) %> ago</span>
+			</div>
+			
+		<% end %>
+		
+		<div id="submit_button_container">
+			<span id="check_twit"><%= check_box_tag 'twit', 'yes' %>also send to twitter</span>
+			<%= s.submit "Update", :id=>"update_button", :class => "button button-disabled", :disabled =>"disabled" %>
+		</div>
+		<div class="clear"></div>
+	</div>
+<%- end -%>
+
+<% if controller.action_name == "search" %>
+	<div id="search_result">
+		<h1 id="heading">
+			<% if @sudas.count > 0 %>
+				Real-time search results for <b><%=@q%></b>
+			<% else %>
+				No real-time search results for <b><%=@q%></b>
+			<% end %>
+			<span class="name-search-link"><%= link_to "Search for users »", people_path(:person=>@q) %></li>
+		</h1>
+	</div>
+<% end %>
+
+<%= render :partial => "/includes/sudas_list", :locals => { :sudas => @sudas }%>
+
+
+	<div id="pagination">
+		<% if controller.action_name=='all' %>
+			<% more_action = "more_all_suda()" %>
+		<% elsif controller.action_name=='search' %>
+			<% more_action = "more_search_suda('#{CGI::escape(@q)}')" %>
+		<% else %>
+			<% more_action = "more_suda()" %>
+		<% end %>
+		<%= link_to_function "More", more_action, :class => 'more' %>
+	</div>
+
