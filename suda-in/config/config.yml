@@ -5,7 +5,7 @@ development :
     twitter_key: your_key
     twitter_secret: your_secret
 
-    use_ldap: true
+    use_ldap: false
     ldap_domain: example.com
     ldap_host: exampledc.example.com
     ldap_base: dn=exampledc.example.com/dc=example,dc=com
@@ -22,7 +22,7 @@ test :
     twitter_key: your_key
     twitter_secret: your_secret
 
-    use_ldap: true
+    use_ldap: false
     ldap_domain: example.com
     ldap_host: exampledc.example.com
     ldap_base: dn=exampledc.example.com/dc=example,dc=com
@@ -39,7 +39,7 @@ production :
     twitter_key: your_key
     twitter_secret: your_secret
 
-    use_ldap: true
+    use_ldap: false
     ldap_domain: example.com
     ldap_host: exampledc.example.com
     ldap_base: dn=exampledc.example.com/dc=example,dc=com
