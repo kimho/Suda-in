@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   
   attr_accessor :password
   before_save :prepare_password
+  before_update :prepare_password
 
   validates_presence_of :username
   validates_uniqueness_of :username, :email, :allow_blank => true
@@ -80,7 +81,6 @@ class User < ActiveRecord::Base
         password = 'empty'
     end
     unless Ping.pingecho(APP_CONFIG['ldap_host'], 3)
-      # puts "error::::::::fail to ping"
       return self.authenticate_db(login, password)
     end
     ldap = Net::LDAP.new(:host => APP_CONFIG['ldap_host'], :base => APP_CONFIG['ldap_base'])
@@ -98,16 +98,15 @@ class User < ActiveRecord::Base
         entry.displayname.each {|name| nickname = name}
         entry.mail.each {|mail| email = mail}
       end
-      # puts "ldap search result:::::: #{ldap.get_operation_result}"
 
       user = find_by_username(username)
-      users = {"username" => username, "email" => email, "nickname" => nickname, "password"=>password}
+      user_info = {"username" => username, "email" => email, "nickname" => nickname, "password"=>password}
       if user
-        # update to ldap info
-        user.update_attributes(users)
+        # reset user info with ldap info
+        User.update(user.id, user_info)
       else
         # signup user to db
-        new_user = User.new(users)
+        new_user = User.new(user_info)
         if new_user.save
           if APP_CONFIG['use_mail']
             # send welcome mail
@@ -124,6 +123,12 @@ class User < ActiveRecord::Base
       else
         return false
       end
+    else
+      # if ldap login fail, change password and inactivate the user
+      user = find_by_username(username)
+      passwords = {"password_hash"=>SecureRandom.hex(10), "password_salt"=>SecureRandom.hex(10)}
+      User.update_all(passwords, {:id => user.id})
+      return false
     end
   end
 
