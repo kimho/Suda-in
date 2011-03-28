@@ -19,15 +19,15 @@ require 'populator'
 #   user.password_confirmation = 'test'
 #   user.save
 # end
-
-User.all.each do |user|
-  Suda.populate(5..10) do |suda|
-    suda.user_id = user.id
-    suda.message = Faker::Lorem.sentence
-  end
-  
-  # Add Friends
-  3.times do
-    user.add_friend(User.all[rand(User.count)])
-  end
-end
+# 
+# User.all.each do |user|
+#   Suda.populate(5..10) do |suda|
+#     suda.user_id = user.id
+#     suda.message = Faker::Lorem.sentence
+#   end
+#   
+#   # Add Friends
+#   3.times do
+#     user.add_friend(User.all[rand(User.count)])
+#   end
+# end
