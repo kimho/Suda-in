@@ -28,6 +28,8 @@ Sudain::Application.routes.draw do
   
   match '/settings/update_settings' => 'settings#update_settings', :as => :update_settings
   
+  match 'videochat' => 'video_chat#index', :as => :video_chat
+  
   match 'remove_friend/:username' => 'home#remove_friend'
   
   match '/more_suda/:page' => 'home#more_suda', :as => :more_suda

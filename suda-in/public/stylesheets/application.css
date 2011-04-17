@@ -46,13 +46,23 @@ ul {
 #logo {
 	float: left;
 }
-#top_links_container {
+#top_links_container1 {
   float: right;
   background-color: #FFF;
+  margin: 2px;
   padding: 10px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
+#top_links_container2 {
+  float: right;
+  background-color: #FFF;
+  margin: 2px;
+  padding: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
 #container {
   width: 765px;
   height: 100%;

@@ -16,6 +16,8 @@ development :
     smtp_address: smtp.localhost
     administrator_mail: administrator@localhost
     
+    videochat_url : https://api.opentok.com/hl/embed/myurl
+    
 test :
     site_title: kimho's
     http_host: localhost
@@ -33,6 +35,8 @@ test :
     smtp_address: smtp.localhost
     administrator_mail: administrator@localhost
     
+    videochat_url : https://api.opentok.com/hl/embed/myurl
+    
 production :
     site_title: kimho's
     http_host: localhost
@@ -49,3 +53,5 @@ production :
     use_mail: false
     smtp_address: smtp.localhost
     administrator_mail: administrator@localhost
+    
+    videochat_url : https://api.opentok.com/hl/embed/myurl
