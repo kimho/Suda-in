@@ -4,6 +4,9 @@ class Suda < ActiveRecord::Base
   
   def self.all_sudas(page)
     offset = ((page.to_i-1)*20)
+    if offset < 0
+      offset = 0
+    end
     limit = 20
     # if page.to_i == 1
     #   limit = 21 # for more button check
@@ -13,6 +16,9 @@ class Suda < ActiveRecord::Base
   
   def self.find_by_search_query(q, page)
     offset = ((page.to_i-1)*20)
+    if offset < 0
+      offset = 0
+    end
     limit = 20
     # if page.to_i == 1
     #   limit = 21 # for more button check

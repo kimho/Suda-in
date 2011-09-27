@@ -44,6 +44,9 @@
 	</div>
 <% end %>
 
+<% if controller.action_name == "all"%>
+	<h3><%=APP_CONFIG['site_title']%> all sudas</h3>
+<% end %>
 <%= render :partial => "/includes/sudas_list", :locals => { :sudas => @sudas }%>
 
 

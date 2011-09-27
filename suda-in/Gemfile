@@ -15,6 +15,7 @@ gem 'ruby-net-ldap'
 gem 'oauth'
 gem 'mysql'
 gem 'mail'
+#gem 'rake', '0.8.7'
 
 # Deploy with Capistrano
 # gem 'capistrano'

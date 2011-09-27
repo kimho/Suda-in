@@ -19,7 +19,8 @@
 </div>
 <% end %>
 <div id="show_all">
-	<h4><%= link_to "Show people in suda", people_path  %></h4>
+	<h4><%= link_to "Show all sudas", all_path  %></h4>
+	<h4><%= link_to "Show people", people_path  %></h4>
 </div>
 <% if current_user.friends_of.count > 0 %>
 	<div>
