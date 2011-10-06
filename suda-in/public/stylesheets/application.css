@@ -222,8 +222,8 @@ ul {
 	float: right;
 }
 
-/* REPLIES LIST */
-#replies_list {
+/* COMMENTS LIST */
+#comments_list {
 	width:455px;
 	float:right;
 	margin: 10px 0px 10px 5px;
@@ -231,49 +231,52 @@ ul {
 	background-color: #F2F2F2;
 	font-size:0.73em;
 }
-#replies_list .replies_li {
+#comments_list .comments_li {
 	list-style: none;
 	padding: 10px 5px 10px 5px;
 	margin: 0px;
 	border-bottom: 1px dashed #fff;
 }
-#replies_list li.first {
+#comments_list li.first {
 	border-top: 1px dashed #D2DADA;
 }
-#replies_list li:hover {
+#comments_list li:hover {
 	background-color: #F7F7F7;
 }
-#replies_list li img {
+#comments_list li img {
 	float: left;
 }
-#replies_list li div.reply_message_container {
+#comments_list li div.comment_message_container {
 	float: left;
 	margin-left: 10px;
 }
-#replies_list li div.reply_message_container a {
+#comments_list li div.comment_message_container a {
 	color: #2276bb;
 	text-decoration: none;
 	font-weight: bold;
 }
-#replies_list li div.reply_message_container div.time_ago {
+#comments_list li div.comment_message_container div.time_ago {
 	color: #9c9c9c;
 	font-size: 0.25em;
 	padding-top: 2px;
 	width: auto;
 }
-#replies_list li div.reply_message_container h3 {
+#comments_list li div.comment_message_container h3 {
 	margin: 0px;
 	font-size 16px;
 }
-#replies_list li div.button_container {
+#comments_list li div.button_container {
 	width: 135px;
 	text-align: right;
 	float: right;
 }
-#replies_list .reply_form {
+#comments_list .comment_form {
 	float:right;
 	padding-top:0.40em;
 	padding-left:0.20em;
+}
+.comment_form {
+	display:none;
 }
 
 #char_count {
@@ -436,6 +439,9 @@ fieldset.common-form th, fieldset.common-form td {
 }
 .visible {
 	visibility:visible;
+}
+.block {
+	display:block;
 }
 .reply:hover a, .resuda-link:hover a, .del:hover a {
 	text-decoration: underline;

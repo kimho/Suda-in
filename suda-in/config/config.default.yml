@@ -4,6 +4,7 @@ development :
     http_host: localhost
     twitter_key: your_key
     twitter_secret: your_secret
+    use_comment : false
 
     use_ldap: false
     ldap_domain: example.com
@@ -23,6 +24,7 @@ test :
     http_host: localhost
     twitter_key: your_key
     twitter_secret: your_secret
+    use_comment : false
 
     use_ldap: false
     ldap_domain: example.com
@@ -42,6 +44,7 @@ production :
     http_host: localhost
     twitter_key: your_key
     twitter_secret: your_secret
+    use_comment : false
 
     use_ldap: false
     ldap_domain: example.com

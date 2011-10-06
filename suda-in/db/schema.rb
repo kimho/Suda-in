@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(:version => 20110927005507) do
     t.integer  "suda_id"
     t.integer  "user_id"
     t.text     "message"
-    t.datetime "create_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

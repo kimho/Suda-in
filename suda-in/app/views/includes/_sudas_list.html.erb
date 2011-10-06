@@ -43,40 +43,24 @@
 					<% end %>
 				</ul>
 			</div>
-			<!-- Start Comments
-			<div class="clear"></div>
-			<ul id="replies_list">
-				<li class="replies_li">
-					<%= image_tag "/emblems/#{suda.user.picture}", :onerror => "this.src='#{suda.user.gravatar_url}'", :width => 30, :height => 30, :title => suda.user.nickname %>
-					<div class="reply_message_container">
-						<div class="reply_message">
-							<span id="reply_user_id">korho</span>
-							<span id="reply_message_id">재미있는 테스트. 댓글 테슽 </span>
+			
+			<% if APP_CONFIG['use_comment'] %>
+				<%- form_for Comment.new do |c| -%>
+				<div id="comments_id_<%= suda.id %>" class="comments_box">
+					<div class="clear"></div>
+					<ul id="comments_list">
+						<div id="comments_list_body">
+							<!-- 
+							<%= render :partial => "/includes/comments_list", :locals => { :suda => suda }%>
+							-->
 						</div>
-						<div class="time_ago">
-							39 minutes ago via web
-						</div>
-					</div>
-				</li>
-				<div class="clear"></div>
-				<li class="replies_li">
-					<%= image_tag "/emblems/#{suda.user.picture}", :onerror => "this.src='#{suda.user.gravatar_url}'", :width => 30, :height => 30, :title => suda.user.nickname %>
-					<div class="reply_message_container">
-						<div class="reply_message">
-							<span id="reply_user_id">korho</span>
-							<span id="reply_message_id">재미있는 테스트. 댓글 테슽 </span>
-						</div>
-						<div class="time_ago">
-							39 minutes ago via web
-						</div>
-					</div>
-				</li>
-				<div class="clear"></div>
-				<li class="reply_form">
-					<textarea rows=2 cols=61></textarea>
-				</li>
-			</ul>
-			<!-- End of Comments -->
+						<li id="comment_form_<%=suda.id%>" class="comment_form">
+							<textarea id="comment_text_<%=suda.id%>" rows=2 cols=61></textarea>
+						</li>
+					</ul>
+				</div>
+				<%- end -%>
+			<% end %>
 			
 			<div class="clear"></div>
 		</li>

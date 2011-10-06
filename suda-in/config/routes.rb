@@ -1,5 +1,9 @@
 Sudain::Application.routes.draw do
 
+  get "comments/index"
+
+  get "comment/index"
+
   match 'user/edit' => 'users#edit', :as => :edit
 
   match 'signup' => 'users#new', :as => :signup
@@ -13,6 +17,8 @@ Sudain::Application.routes.draw do
   match 'users' => 'users#create'
   
   match 'sudas' => 'sudas#create'
+  
+  match 'comments' => 'comments#create'
 
   match 'following' => 'home#following'  
   

@@ -1,0 +1,16 @@
+
+		<% suda.comments.each do |comment| %>
+		<li class="comments_li">
+			<%= image_tag "/emblems/#{comment.user.picture}", :onerror => "this.src='#{comment.user.gravatar_url}'", :width => 30, :height => 30, :title => suda.user.nickname %>
+			<div class="comment_message_container">
+				<div class="comment_message">
+					<span id="comment_user_id">comment.user.id</span>
+					<span id="comment_message_id">comment.message </span>
+				</div>
+				<div class="time_ago">
+					<%= distance_of_time_in_words_to_now(comment.created_at) %> ago
+				</div>
+			</div>
+		</li>
+		<div class="clear"></div>
+		<% end %>
