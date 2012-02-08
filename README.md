@@ -9,7 +9,7 @@
 
 # Before You Begin
 
- * Install Ruby, RubyGems?, Rails 3, and a database like MySQL
+ * Install Ruby, RubyGems, Rails 3, and a database like MySQL
 
 # Installation
 
