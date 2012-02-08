@@ -1,4 +1,4 @@
- h3. Features
+# Features
  *Basic Twitter Features
  *Support LDAP authentication
  *Support Gravatar
@@ -6,15 +6,15 @@
  *Simultaneous writing on Twitter
  *Default language is English
 
- h3. Before You Begin
+# Before You Begin
  *Install Ruby, RubyGems?, Rails 3, and a database like MySQL
 
- h3. Installation
- *Download the source from "Source" tab.
- *Set your configuration file at config/config.yml (see config/config.default.yml for an example)
- *Set your database configuration file at config/database.yml (see config/database.default.yml for an example)
- *Run "rake db:create" and "rake db:migrate".
- *That's it. Now, Run rails and connect from your web browser.
+# Installation
+ 1. Download the source from "Source" tab.
+ 2. Set your configuration file at config/config.yml (see config/config.default.yml for an example)
+ 3. Set your database configuration file at config/database.yml (see config/database.default.yml for an example)
+ 4. Run "rake db:create" and "rake db:migrate".
+ 5. That's it. Now, Run rails and connect from your web browser.
 
- h3. Special thanks to
+# Special thanks to
  *Special thanks to Ryan Bates. His blog is so helpful.
