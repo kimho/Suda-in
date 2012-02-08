@@ -13,7 +13,7 @@
 
 # Installation
 
- 1. Download the source from "Source" tab.
+ 1. Download the source.
  2. Set your configuration file at config/config.yml (see config/config.default.yml for an example)
  3. Set your database configuration file at config/database.yml (see config/database.default.yml for an example)
  4. Run "rake db:create" and "rake db:migrate".
